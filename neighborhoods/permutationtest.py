@@ -2,8 +2,25 @@ import numpy as np
 import networkx as nx
 from scipy import sparse
 
-def create_subgraph(graph, subgraph_size, n):
-    # subgraph_size = 500
+def create_subgraph(graph, subgraph_size, n=1):
+    '''
+    Returns the nodes in a breadth-first subgraph.
+
+    Parameters
+    ----------
+        graph   :   NetworkX.Graph
+            The graph object of the full tissue. 
+        subgraph_size   :   int
+            the size of the subgraph to generate (number of nodes)
+        n   :   int
+            the number of subgraphs to generate. Default = 1
+    
+    Returns
+    -------
+        subgraphs   :   Array-like
+            list of n lists of nodes contained in subgraph.
+    '''
+
     counter = 0
     subgraphs = []
 

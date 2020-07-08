@@ -88,10 +88,48 @@ def voronoi_finite_polygons_2d(vor, radius=None):
 
 def get_cmap(n, name='Spectral'):
     '''Returns a function that maps each index in 0, 1, ..., n-1 to a distinct 
-    RGB color; the keyword argument name must be a standard mpl colormap name.'''
+    RGB color; the keyword argument name must be a standard mpl colormap name.
+    
+    Parameters
+    ----------
+        n   :   int
+            number of colors in palette
+        name    :   str
+            matplotlib color palette name, Default = 'spectral'
+    
+    Returns
+    -------
+        cmap    :   matplotlib cmap
+            matplotlib cmap
+    '''
     return plt.cm.get_cmap(name, n)
 
 def make_vor(dim, attribute_dict, position_dict, n_cell_types, results_dir, graph_id, node_id_list):
+    '''
+    Writes the Voronoi diagram for a given tissue scaffold to a PDF file. 
+
+    Parameters
+    ----------
+        dim :   float
+            the dimension in px of the tissue
+        attribute_dict :    dict
+            the dictionary of attributes for every node id
+        position_dict   :   dict
+            the dictionary of every center in the circle packing
+        n_cell_types    :   int
+            the number of cell types specified in the labeling
+        results_dir :   str
+            the path to write the outfiles
+        graph_id    :   str
+            an ID to add to the file names
+        node_id_list    :   array-like
+            list of node IDs
+    
+    Returns
+    -------
+        None
+    '''
+
 
     c = get_cmap(n_cell_types)
     colors = [c(attribute_dict[i]) for i in node_id_list]

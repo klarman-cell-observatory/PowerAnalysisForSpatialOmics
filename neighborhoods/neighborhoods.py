@@ -10,6 +10,21 @@ from glob import glob
 
 
 def build_assignment_matrix(attribute_dict, n_cell_types):
+    '''
+    Converts attribute dict to one-hot encoded assignment matrix. 
+
+    Parameters
+    ----------
+        attribute_dict :    dict
+            the dictionary of node ID attributes
+        n_cell_types    :   int
+            the number of cell types present in the tissue
+    
+    Returns
+    -------
+        B   :   array-like
+            the nxK one-hot encoded cell type assignment matrix
+    '''
     data = list(attribute_dict.items())
     data = np.array(data)  # Assignment matrix
 
@@ -23,6 +38,23 @@ def build_assignment_matrix(attribute_dict, n_cell_types):
 
 
 def parse_results(results, size, out_dir):
+    '''
+    Writes the trial results to file
+
+    Parameters
+    ----------
+        results :   array-like
+            results array from joblib
+        size    :   int
+            the number of cells in the trial
+        out_dir :   str
+            the path to write outfiles.
+    
+    Returns
+    -------
+        None
+    '''
+
     print("Writing results...")
     print(str(out_dir))
     print(len(results))

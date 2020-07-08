@@ -9,6 +9,31 @@ from matplotlib.backends.backend_agg import FigureCanvasAgg as FigureCanvas
 from matplotlib.figure import Figure
 
 def sample_line_segment(x_a, x_b, rc_a, rc_b, r_min, r_max):
+    '''
+    Samples random line segment for a new circle radius. 
+
+    Parameters
+    ----------
+    x_a :   ndarray
+        corner pixel coordinate
+    x_b :   ndarray
+        x coordinate b
+    rc_a :  float
+        random coordinates 
+    rc_b    :   float
+        np.roll(rc_a, [-1]) operation on rc_a
+    r_max   :   float
+        max radius
+    r_min   :   float
+        minimum radius
+
+    Returns
+    -------
+    center  :   array-like
+        circle center coords
+    radius  :   array-like
+        circle radii
+    '''
     r = x_b - x_a
     l = np.linalg.norm(r, ord=2)  # L2 norm
     r = r / np.linalg.norm(l)
@@ -31,6 +56,27 @@ def sample_line_segment(x_a, x_b, rc_a, rc_b, r_min, r_max):
 
 
 def update_grid(X_new, R_new, G, r_min):
+    '''
+    Tracks empty space in canvas.
+
+    Parameters
+    ----------
+    X_new   :   array-like
+        newly found coordinates of circles
+    R_new   :   array-like
+        newly found radii paired with X_new
+    G   :   ndarray
+        the current empty space grid
+    r_min   :   float
+        minimum radius in the circle packing
+
+    Returns
+    -------
+    G   :   ndarray
+        the empty space grid
+    mask    :   ndarray
+        boolean mask to update G
+    '''
     _D = (G - X_new)
     _D = np.power(_D, 2)
     D = np.sum(_D, axis=1)
@@ -42,6 +88,25 @@ def update_grid(X_new, R_new, G, r_min):
 
 
 def set_color(r_list, max_r, min_r, n_types):
+    '''
+    Assigns color based on size for improved visualization. 
+
+    Parameters
+    ----------
+    r_list  :   array-like
+        the list of radii
+    max_r   :   float
+        maximum circle radius
+    min_r   :   float
+        minimum circle radius
+    n_types :   int
+        the number of colors to use. 
+    
+    Returns
+    -------
+    assigned_colors :   ndarray
+        matrix of color assignment for every circle. 
+    '''
     #color_list = ['#24557D', '#156944', '#5EC358', '#EB9420', '#E54116', '#F4BF1F', '#BC1826', '#CCB98E',
                 #  '#90B3B7', '#C4B6C1', '#E6ED40', '#5ECCB7', '#BB4E64', '#8C4FC9', '#E05B7C', '#26A8BD']
     color_list = [(.14,.33,.49), (.08,.41,.27), (.37,.76,.35), (.92,.58,.13), (.90,.25,.09), (.96,.75,.12), (.74,.09,.15),
@@ -70,13 +135,27 @@ def set_color(r_list, max_r, min_r, n_types):
 
 def circle_intersect_check(r_0, r_1, x_0, x_1, y_0, y_1):
     """
-    :param r_0: radius of search circle
-    :param r_1: radius of check circle
-    :param x_0: x coord of search circle center
-    :param x_1: x coord of check circle center
-    :param y_0: y coord of search circle center
-    :param y_1: x coord of check circle center
-    :return: Numpy array of the circle indicies that intersect.
+    Caclculates whether two circles are overlapping. 
+
+    Parameters
+    ----------
+    r_0 :   float   
+        radius of search circle
+    r_1 :   float   
+        radius of check circle
+    x_0 :   float   
+        x coord of search circle center
+    x_1 :   float
+        x coord of check circle center
+    y_0 :   float
+        y coord of search circle center
+    y_1 :   float
+        y coord of check circle center
+    
+    Returns
+    -------
+        indicies    :   array-like
+            Numpy array of the circle indicies that intersect.
     """
 
     distance_squared = np.power(x_0 - x_1, 2) + np.power(y_0 - y_1, 2)
