@@ -1,7 +1,7 @@
 import numpy as np
 import networkx as nx
-import neighborhoods.permutationtest as perm_test 
-import neighborhoods.neighborhoods as nbr 
+import spatialpower.neighborhoods.permutationtest as perm_test 
+import spatialpower.neighborhoods.neighborhoods as nbr 
 from scipy import sparse
 from datetime import datetime
 #import yappi

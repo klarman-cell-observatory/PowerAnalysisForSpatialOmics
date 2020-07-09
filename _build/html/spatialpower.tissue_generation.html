@@ -1,0 +1,576 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>spatialpower.tissue_generation package &mdash; spatialpower 0 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+
+  
+  
+  
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/doctools.js"></script>
+        <script src="_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="index.html" class="icon icon-home" alt="Documentation Home"> spatialpower
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <!-- Local TOC -->
+              <div class="local-toc"><ul>
+<li><a class="reference internal" href="#">spatialpower.tissue_generation package</a><ul>
+<li><a class="reference internal" href="#submodules">Submodules</a></li>
+<li><a class="reference internal" href="#module-spatialpower.tissue_generation.assign_labels">spatialpower.tissue_generation.assign_labels module</a></li>
+<li><a class="reference internal" href="#module-spatialpower.tissue_generation.random_circle_packing">spatialpower.tissue_generation.random_circle_packing module</a></li>
+<li><a class="reference internal" href="#module-spatialpower.tissue_generation.visualization">spatialpower.tissue_generation.visualization module</a></li>
+</ul>
+</li>
+</ul>
+</div>
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">spatialpower</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
+        
+      <li>spatialpower.tissue_generation package</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="_sources/spatialpower.tissue_generation.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="spatialpower-tissue-generation-package">
+<h1>spatialpower.tissue_generation package<a class="headerlink" href="#spatialpower-tissue-generation-package" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="submodules">
+<h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="module-spatialpower.tissue_generation.assign_labels">
+<span id="spatialpower-tissue-generation-assign-labels-module"></span><h2>spatialpower.tissue_generation.assign_labels module<a class="headerlink" href="#module-spatialpower.tissue_generation.assign_labels" title="Permalink to this headline">¶</a></h2>
+<dl class="py function">
+<dt id="spatialpower.tissue_generation.assign_labels.check_cell_type_dist">
+<code class="sig-prename descclassname">spatialpower.tissue_generation.assign_labels.</code><code class="sig-name descname">check_cell_type_dist</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">n_cell_types</span></em>, <em class="sig-param"><span class="n">attribute_dict</span></em>, <em class="sig-param"><span class="n">cell_type_probabilities</span></em>, <em class="sig-param"><span class="n">silent</span><span class="o">=</span><span class="default_value">False</span></em><span class="sig-paren">)</span><a class="headerlink" href="#spatialpower.tissue_generation.assign_labels.check_cell_type_dist" title="Permalink to this definition">¶</a></dt>
+<dd><p>Checks the cell type distribution against the specified distribution.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>n_cell_types</strong> (<em>int</em>) – the number of cell types in the assignment</p></li>
+<li><p><strong>attribute_dict</strong> (<em>dict</em>) – the dictionary of node assignments.</p></li>
+<li><p><strong>cell_type_probabilities</strong> (<em>ndarray</em>) – the vector of cell type abundances</p></li>
+<li><p><strong>silent</strong> (<em>bool</em>) – toggles verbose output. Default=`False`</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><ul class="simple">
+<li><p><strong>type_proportions</strong> (<em>ndarray</em>) – the observed cell type distribution</p></li>
+<li><p><strong>divergence</strong> (<em>float</em>) – the KL divergence between the observed and specified distribution</p></li>
+</ul>
+</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="spatialpower.tissue_generation.assign_labels.check_neighborhood_dist">
+<code class="sig-prename descclassname">spatialpower.tissue_generation.assign_labels.</code><code class="sig-name descname">check_neighborhood_dist</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">n_cell_types</span></em>, <em class="sig-param"><span class="n">attribute_dict</span></em>, <em class="sig-param"><span class="n">neighborhood_probabilities</span></em>, <em class="sig-param"><span class="n">graph</span></em>, <em class="sig-param"><span class="n">d</span></em>, <em class="sig-param"><span class="n">silent</span><span class="o">=</span><span class="default_value">False</span></em><span class="sig-paren">)</span><a class="headerlink" href="#spatialpower.tissue_generation.assign_labels.check_neighborhood_dist" title="Permalink to this definition">¶</a></dt>
+<dd><p>Calculates the neighborbood distribution iteratively (deprecated) and compares to the specified distribution.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>n_cell_types</strong> (<em>int</em>) – the number of cell types in the assignment</p></li>
+<li><p><strong>attribute_dict</strong> (<em>dict</em>) – the dictionary of node assignments.</p></li>
+<li><p><strong>neighborhood_probabilities</strong> (<em>ndarray</em>) – the matrix of neighborhoods co-occurence probabilities</p></li>
+<li><p><strong>graph</strong> (<em>networkX.Graph</em>) – the graph object of the <em>in silico</em> tissue</p></li>
+<li><p><strong>d</strong> (<em>int</em>) – grah distance radius used to calculate neighborhood</p></li>
+<li><p><strong>silent</strong> (<em>bool</em>) – toggles verbose output. Default=`False`</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><ul class="simple">
+<li><p><strong>mean_proportions</strong> (<em>ndarray</em>) – the observed neighborhood distribution</p></li>
+<li><p><strong>divergence</strong> (<em>float</em>) – the KL divergence between the observed and specified distribution</p></li>
+</ul>
+</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="spatialpower.tissue_generation.assign_labels.get_type_proportions">
+<code class="sig-prename descclassname">spatialpower.tissue_generation.assign_labels.</code><code class="sig-name descname">get_type_proportions</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">n_types</span></em>, <em class="sig-param"><span class="n">observed</span></em><span class="sig-paren">)</span><a class="headerlink" href="#spatialpower.tissue_generation.assign_labels.get_type_proportions" title="Permalink to this definition">¶</a></dt>
+<dd><p>Calculates the observed proportion of cell types</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>n_types</strong> (<em>int</em>) – the number of cell types in the assignment.</p></li>
+<li><p><strong>observed</strong> (<em>array-like</em>) – array of cell types observed.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><strong>proportions</strong> – 1 x n_type list of the proportion of cells in observed that are of each type.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>array-like</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="spatialpower.tissue_generation.assign_labels.get_unassigned_nodes">
+<code class="sig-prename descclassname">spatialpower.tissue_generation.assign_labels.</code><code class="sig-name descname">get_unassigned_nodes</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">attribute_dict</span></em><span class="sig-paren">)</span><a class="headerlink" href="#spatialpower.tissue_generation.assign_labels.get_unassigned_nodes" title="Permalink to this definition">¶</a></dt>
+<dd><p>Finds nodes that are unassigned.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>attribute_dict</strong> (<em>dict</em>) – assignment dictionary</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><strong>unassigned</strong> – list of unassigned node IDs</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>list</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="spatialpower.tissue_generation.assign_labels.heuristic_assignment">
+<code class="sig-prename descclassname">spatialpower.tissue_generation.assign_labels.</code><code class="sig-name descname">heuristic_assignment</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">graph</span></em>, <em class="sig-param"><span class="n">cell_type_probabilities</span></em>, <em class="sig-param"><span class="n">neighborhood_probabilities</span></em>, <em class="sig-param"><span class="n">mode</span></em>, <em class="sig-param"><span class="n">dim</span></em>, <em class="sig-param"><span class="n">position_dict</span></em><span class="sig-paren">)</span><a class="headerlink" href="#spatialpower.tissue_generation.assign_labels.heuristic_assignment" title="Permalink to this definition">¶</a></dt>
+<dd><p>Performs the heuristic assignment algorithm for labeling a tissue scaffold.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>graph</strong> (<em>networkX.Graph</em>) – the graph of the tissue</p></li>
+<li><p><strong>cell_type_probabilities</strong> (<em>ndarray</em>) – <cite>1 x K</cite> vector of cell type abundance proportions</p></li>
+<li><p><strong>neighborhood_probabilities</strong> (<em>ndarray</em>) – <cite>K x K</cite> matrix of neighborhood co-occurence probabilities</p></li>
+<li><p><strong>mode</strong> (<em>str</em>) – The neighborhood styyle, {‘graph’, ‘region’}</p></li>
+<li><p><strong>dim</strong> (<em>float</em>) – the size of the canvas</p></li>
+<li><p><strong>position_dict</strong> (<em>dict</em>) – dictionary of circle center positions from tissue generation</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><strong>attribute_dict</strong> – dictionary of cell type assignments for each node ID</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>dict</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="spatialpower.tissue_generation.assign_labels.kl_divergence">
+<code class="sig-prename descclassname">spatialpower.tissue_generation.assign_labels.</code><code class="sig-name descname">kl_divergence</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">p</span></em>, <em class="sig-param"><span class="n">q</span></em><span class="sig-paren">)</span><a class="headerlink" href="#spatialpower.tissue_generation.assign_labels.kl_divergence" title="Permalink to this definition">¶</a></dt>
+<dd><p>Calculate the KL Divergence between two distrbitions</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>p</strong> (<em>Array-like</em><em>, </em><em>distribution 1</em>) – </p></li>
+<li><p><strong>q</strong> (<em>Array-like</em><em>, </em><em>distribution 2</em>) – </p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><strong>div</strong></p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>float, KL divergence</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="spatialpower.tissue_generation.assign_labels.sample_cell_type">
+<code class="sig-prename descclassname">spatialpower.tissue_generation.assign_labels.</code><code class="sig-name descname">sample_cell_type</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">dist</span></em><span class="sig-paren">)</span><a class="headerlink" href="#spatialpower.tissue_generation.assign_labels.sample_cell_type" title="Permalink to this definition">¶</a></dt>
+<dd><p>Samples the cell type from a multinomial distribution.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>dist</strong> (<em>1D ndarray</em>) – the multinomial distribution</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><strong>i</strong> – cell type ID number</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>int</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="spatialpower.tissue_generation.assign_labels.swap_types">
+<code class="sig-prename descclassname">spatialpower.tissue_generation.assign_labels.</code><code class="sig-name descname">swap_types</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">observed_neighborhood</span></em>, <em class="sig-param"><span class="n">expected_neighborhood</span></em>, <em class="sig-param"><span class="n">attribute_dict</span></em>, <em class="sig-param"><span class="n">region_nodes</span></em><span class="sig-paren">)</span><a class="headerlink" href="#spatialpower.tissue_generation.assign_labels.swap_types" title="Permalink to this definition">¶</a></dt>
+<dd><p>Performs type swapping in the heuristic assignment to mirror distributions.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>observed_neighborhood</strong> (<em>ndarray</em>) – proportions in the observed neighborhood</p></li>
+<li><p><strong>expected_neighborhood</strong> (<em>ndarray</em>) – proportions in the expected neighborhood</p></li>
+<li><p><strong>attribute_dict</strong> (<em>dict</em>) – dictionary of attribute assignments</p></li>
+<li><p><strong>region_nodes</strong> (<em>array-like</em>) – list of nodes in the region/neighborhood</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><strong>attribute_dict</strong> – updated attribute dictionary with types swapped</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>dict</p>
+</dd>
+</dl>
+</dd></dl>
+
+</div>
+<div class="section" id="module-spatialpower.tissue_generation.random_circle_packing">
+<span id="spatialpower-tissue-generation-random-circle-packing-module"></span><h2>spatialpower.tissue_generation.random_circle_packing module<a class="headerlink" href="#module-spatialpower.tissue_generation.random_circle_packing" title="Permalink to this headline">¶</a></h2>
+<dl class="py function">
+<dt id="spatialpower.tissue_generation.random_circle_packing.circle_intersect_check">
+<code class="sig-prename descclassname">spatialpower.tissue_generation.random_circle_packing.</code><code class="sig-name descname">circle_intersect_check</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">r_0</span></em>, <em class="sig-param"><span class="n">r_1</span></em>, <em class="sig-param"><span class="n">x_0</span></em>, <em class="sig-param"><span class="n">x_1</span></em>, <em class="sig-param"><span class="n">y_0</span></em>, <em class="sig-param"><span class="n">y_1</span></em><span class="sig-paren">)</span><a class="headerlink" href="#spatialpower.tissue_generation.random_circle_packing.circle_intersect_check" title="Permalink to this definition">¶</a></dt>
+<dd><p>Caclculates whether two circles are overlapping.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>r_0</strong> (<em>float</em>) – radius of search circle</p></li>
+<li><p><strong>r_1</strong> (<em>float</em>) – radius of check circle</p></li>
+<li><p><strong>x_0</strong> (<em>float</em>) – x coord of search circle center</p></li>
+<li><p><strong>x_1</strong> (<em>float</em>) – x coord of check circle center</p></li>
+<li><p><strong>y_0</strong> (<em>float</em>) – y coord of search circle center</p></li>
+<li><p><strong>y_1</strong> (<em>float</em>) – y coord of check circle center</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><strong>indicies</strong> – Numpy array of the circle indicies that intersect.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>array-like</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="spatialpower.tissue_generation.random_circle_packing.sample_line_segment">
+<code class="sig-prename descclassname">spatialpower.tissue_generation.random_circle_packing.</code><code class="sig-name descname">sample_line_segment</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">x_a</span></em>, <em class="sig-param"><span class="n">x_b</span></em>, <em class="sig-param"><span class="n">rc_a</span></em>, <em class="sig-param"><span class="n">rc_b</span></em>, <em class="sig-param"><span class="n">r_min</span></em>, <em class="sig-param"><span class="n">r_max</span></em><span class="sig-paren">)</span><a class="headerlink" href="#spatialpower.tissue_generation.random_circle_packing.sample_line_segment" title="Permalink to this definition">¶</a></dt>
+<dd><p>Samples random line segment for a new circle radius.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>x_a</strong> (<em>ndarray</em>) – corner pixel coordinate</p></li>
+<li><p><strong>x_b</strong> (<em>ndarray</em>) – x coordinate b</p></li>
+<li><p><strong>rc_a</strong> (<em>float</em>) – random coordinates</p></li>
+<li><p><strong>rc_b</strong> (<em>float</em>) – np.roll(rc_a, [-1]) operation on rc_a</p></li>
+<li><p><strong>r_max</strong> (<em>float</em>) – max radius</p></li>
+<li><p><strong>r_min</strong> (<em>float</em>) – minimum radius</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><ul class="simple">
+<li><p><strong>center</strong> (<em>array-like</em>) – circle center coords</p></li>
+<li><p><strong>radius</strong> (<em>array-like</em>) – circle radii</p></li>
+</ul>
+</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="spatialpower.tissue_generation.random_circle_packing.set_color">
+<code class="sig-prename descclassname">spatialpower.tissue_generation.random_circle_packing.</code><code class="sig-name descname">set_color</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">r_list</span></em>, <em class="sig-param"><span class="n">max_r</span></em>, <em class="sig-param"><span class="n">min_r</span></em>, <em class="sig-param"><span class="n">n_types</span></em><span class="sig-paren">)</span><a class="headerlink" href="#spatialpower.tissue_generation.random_circle_packing.set_color" title="Permalink to this definition">¶</a></dt>
+<dd><p>Assigns color based on size for improved visualization.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>r_list</strong> (<em>array-like</em>) – the list of radii</p></li>
+<li><p><strong>max_r</strong> (<em>float</em>) – maximum circle radius</p></li>
+<li><p><strong>min_r</strong> (<em>float</em>) – minimum circle radius</p></li>
+<li><p><strong>n_types</strong> (<em>int</em>) – the number of colors to use.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><strong>assigned_colors</strong> – matrix of color assignment for every circle.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>ndarray</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="spatialpower.tissue_generation.random_circle_packing.update_grid">
+<code class="sig-prename descclassname">spatialpower.tissue_generation.random_circle_packing.</code><code class="sig-name descname">update_grid</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">X_new</span></em>, <em class="sig-param"><span class="n">R_new</span></em>, <em class="sig-param"><span class="n">G</span></em>, <em class="sig-param"><span class="n">r_min</span></em><span class="sig-paren">)</span><a class="headerlink" href="#spatialpower.tissue_generation.random_circle_packing.update_grid" title="Permalink to this definition">¶</a></dt>
+<dd><p>Tracks empty space in canvas.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>X_new</strong> (<em>array-like</em>) – newly found coordinates of circles</p></li>
+<li><p><strong>R_new</strong> (<em>array-like</em>) – newly found radii paired with X_new</p></li>
+<li><p><strong>G</strong> (<em>ndarray</em>) – the current empty space grid</p></li>
+<li><p><strong>r_min</strong> (<em>float</em>) – minimum radius in the circle packing</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><ul class="simple">
+<li><p><strong>G</strong> (<em>ndarray</em>) – the empty space grid</p></li>
+<li><p><strong>mask</strong> (<em>ndarray</em>) – boolean mask to update G</p></li>
+</ul>
+</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="spatialpower.tissue_generation.random_circle_packing.voronoi_finite_polygons_2d">
+<code class="sig-prename descclassname">spatialpower.tissue_generation.random_circle_packing.</code><code class="sig-name descname">voronoi_finite_polygons_2d</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">vor</span></em>, <em class="sig-param"><span class="n">radius</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="headerlink" href="#spatialpower.tissue_generation.random_circle_packing.voronoi_finite_polygons_2d" title="Permalink to this definition">¶</a></dt>
+<dd><p>Reconstruct infinite voronoi regions in a 2D diagram to finite
+regions.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>vor</strong> (<em>Voronoi</em>) – Input diagram</p></li>
+<li><p><strong>radius</strong> (<em>float</em><em>, </em><em>optional</em>) – Distance to ‘points at infinity’.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><ul class="simple">
+<li><p><strong>regions</strong> (<em>list of tuples</em>) – Indices of vertices in each revised Voronoi regions.</p></li>
+<li><p><strong>vertices</strong> (<em>list of tuples</em>) – Coordinates for revised Voronoi vertices. Same as coordinates
+of input vertices, with ‘points at infinity’ appended to the
+end.</p></li>
+</ul>
+</p>
+</dd>
+</dl>
+</dd></dl>
+
+</div>
+<div class="section" id="module-spatialpower.tissue_generation.visualization">
+<span id="spatialpower-tissue-generation-visualization-module"></span><h2>spatialpower.tissue_generation.visualization module<a class="headerlink" href="#module-spatialpower.tissue_generation.visualization" title="Permalink to this headline">¶</a></h2>
+<dl class="py function">
+<dt id="spatialpower.tissue_generation.visualization.get_cmap">
+<code class="sig-prename descclassname">spatialpower.tissue_generation.visualization.</code><code class="sig-name descname">get_cmap</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">n</span></em>, <em class="sig-param"><span class="n">name</span><span class="o">=</span><span class="default_value">'Spectral'</span></em><span class="sig-paren">)</span><a class="headerlink" href="#spatialpower.tissue_generation.visualization.get_cmap" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns a function that maps each index in 0, 1, …, n-1 to a distinct
+RGB color; the keyword argument name must be a standard mpl colormap name.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>n</strong> (<em>int</em>) – number of colors in palette</p></li>
+<li><p><strong>name</strong> (<em>str</em>) – matplotlib color palette name, Default = ‘spectral’</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><strong>cmap</strong> – matplotlib cmap</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>matplotlib cmap</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="spatialpower.tissue_generation.visualization.make_vor">
+<code class="sig-prename descclassname">spatialpower.tissue_generation.visualization.</code><code class="sig-name descname">make_vor</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">dim</span></em>, <em class="sig-param"><span class="n">attribute_dict</span></em>, <em class="sig-param"><span class="n">position_dict</span></em>, <em class="sig-param"><span class="n">n_cell_types</span></em>, <em class="sig-param"><span class="n">results_dir</span></em>, <em class="sig-param"><span class="n">graph_id</span></em>, <em class="sig-param"><span class="n">node_id_list</span></em><span class="sig-paren">)</span><a class="headerlink" href="#spatialpower.tissue_generation.visualization.make_vor" title="Permalink to this definition">¶</a></dt>
+<dd><p>Writes the Voronoi diagram for a given tissue scaffold to a PDF file.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>dim</strong> (<em>float</em>) – the dimension in px of the tissue</p></li>
+<li><p><strong>attribute_dict</strong> (<em>dict</em>) – the dictionary of attributes for every node id</p></li>
+<li><p><strong>position_dict</strong> (<em>dict</em>) – the dictionary of every center in the circle packing</p></li>
+<li><p><strong>n_cell_types</strong> (<em>int</em>) – the number of cell types specified in the labeling</p></li>
+<li><p><strong>results_dir</strong> (<em>str</em>) – the path to write the outfiles</p></li>
+<li><p><strong>graph_id</strong> (<em>str</em>) – an ID to add to the file names</p></li>
+<li><p><strong>node_id_list</strong> (<em>array-like</em>) – list of node IDs</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p></p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="spatialpower.tissue_generation.visualization.voronoi_finite_polygons_2d">
+<code class="sig-prename descclassname">spatialpower.tissue_generation.visualization.</code><code class="sig-name descname">voronoi_finite_polygons_2d</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">vor</span></em>, <em class="sig-param"><span class="n">radius</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="headerlink" href="#spatialpower.tissue_generation.visualization.voronoi_finite_polygons_2d" title="Permalink to this definition">¶</a></dt>
+<dd><p>Reconstruct infinite voronoi regions in a 2D diagram to finite
+regions.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>vor</strong> (<em>Voronoi</em>) – Input diagram</p></li>
+<li><p><strong>radius</strong> (<em>float</em><em>, </em><em>optional</em>) – Distance to ‘points at infinity’.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><ul class="simple">
+<li><p><strong>regions</strong> (<em>list of tuples</em>) – Indices of vertices in each revised Voronoi regions.</p></li>
+<li><p><strong>vertices</strong> (<em>list of tuples</em>) – Coordinates for revised Voronoi vertices. Same as coordinates
+of input vertices, with ‘points at infinity’ appended to the
+end.</p></li>
+</ul>
+</p>
+</dd>
+</dl>
+</dd></dl>
+
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        
+        &copy; Copyright 2020, Ethan Alexander García Baker
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

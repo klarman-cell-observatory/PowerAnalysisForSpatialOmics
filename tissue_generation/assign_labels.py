@@ -2,7 +2,20 @@ import numpy as np
 import networkx as nx
 import operator
 
-def get_unassigned_nodes():
+def get_unassigned_nodes(attribute_dict):
+    '''
+    Finds nodes that are unassigned.
+
+    Parameters
+    ----------
+    attribute_dict  :   dict
+        assignment dictionary
+    
+    Returns
+    -------
+    unassigned  :   list
+        list of unassigned node IDs
+    '''
     unassigned = []
     for n in node_id_list:
         if attribute_dict[n] == -1:
@@ -10,6 +23,20 @@ def get_unassigned_nodes():
     return unassigned
 
 def sample_cell_type(dist):
+    '''
+    Samples the cell type from a multinomial distribution.
+
+    Parameters
+    ----------
+    dist    :   1D ndarray
+        the multinomial distribution
+    
+    Returns
+    -------
+        i   :   int
+            cell type ID number
+    '''
+
     x_i = np.random.multinomial(1, dist)
     for i in range(0, len(x_i)):
         if x_i[i] == 1:
@@ -28,6 +55,7 @@ def kl_divergence(p, q):
     -------
     div : float, KL divergence
     '''
+
     p = np.array(p)
     q = np.array(q)
     
@@ -40,6 +68,22 @@ def kl_divergence(p, q):
     return div
 
 def get_type_proportions(n_types, observed):
+    '''
+    Calculates the observed proportion of cell types
+
+    Parameters
+    ----------
+    n_types :   int
+        the number of cell types in the assignment.
+    observed    :   array-like
+        array of cell types observed.
+
+    Returns
+    -------
+    proportions :   array-like
+        1 x n_type list of the proportion of cells in observed that are of each type.
+
+    '''
     try:
         unique, counts = np.unique(observed, return_counts = True)
     except:
@@ -59,6 +103,28 @@ def get_type_proportions(n_types, observed):
         return proportions
 
 def check_cell_type_dist(n_cell_types, attribute_dict, cell_type_probabilities, silent=False):
+    '''
+    Checks the cell type distribution against the specified distribution.
+
+    Parameters
+    ----------
+    n_cell_types    :   int
+        the number of cell types in the assignment
+    attribute_dict  :   dict
+        the dictionary of node assignments.
+    cell_type_probabilities :   ndarray
+        the vector of cell type abundances
+    silent  :   bool
+        toggles verbose output. Default=`False`
+    
+    Returns
+    -------
+    type_proportions    :   ndarray
+        the observed cell type distribution
+    divergence  :   float
+        the KL divergence between the observed and specified distribution
+
+    '''
     n_cells = len(attribute_dict)
     values = list(attribute_dict.values())
     
@@ -80,6 +146,32 @@ def check_cell_type_dist(n_cell_types, attribute_dict, cell_type_probabilities, 
     return type_proportions, kl
 
 def check_neighborhood_dist(n_cell_types, attribute_dict, neighborhood_probabilities, graph, d, silent=False):
+    '''
+    Calculates the neighborbood distribution iteratively (deprecated) and compares to the specified distribution.
+
+    Parameters
+    ----------
+    n_cell_types    :   int
+        the number of cell types in the assignment
+    attribute_dict  :   dict
+        the dictionary of node assignments.
+    neighborhood_probabilities  :   ndarray
+        the matrix of neighborhoods co-occurence probabilities
+    graph   :   networkX.Graph
+        the graph object of the *in silico* tissue
+    d   :   int
+        grah distance radius used to calculate neighborhood
+    silent  :   bool
+        toggles verbose output. Default=`False`
+
+    Returns
+    -------
+    mean_proportions    :   ndarray
+        the observed neighborhood distribution
+    divergence  :   float
+        the KL divergence between the observed and specified distribution
+    
+    '''
     values = np.array(list(attribute_dict.values()))
     nodes_of_type = []
     results = [[] for i in range(0, n_cell_types)]
@@ -124,6 +216,27 @@ def check_neighborhood_dist(n_cell_types, attribute_dict, neighborhood_probabili
     return mean_distributions, kl
 
 def swap_types(observed_neighborhood, expected_neighborhood, attribute_dict, region_nodes):
+    '''
+    Performs type swapping in the heuristic assignment to mirror distributions.
+
+    Parameters
+    ----------
+    observed_neighborhood   :   ndarray
+        proportions in the observed neighborhood
+    expected_neighborhood   :   ndarray
+        proportions in the expected neighborhood
+    attribute_dict  :   dict
+        dictionary of attribute assignments
+    region_nodes    :   array-like
+        list of nodes in the region/neighborhood
+    
+    Returns
+    -------
+    attribute_dict  :   dict
+        updated attribute dictionary with types swapped
+
+    '''
+
     dif = observed_neighborhood - expected_neighborhood
     max_type = np.argmax(dif) #max difference
     min_type = np.argmin(dif)
@@ -163,6 +276,30 @@ def swap_types(observed_neighborhood, expected_neighborhood, attribute_dict, reg
     return attribute_dict
 
 def heuristic_assignment(graph, cell_type_probabilities, neighborhood_probabilities, mode, dim, position_dict):
+    '''
+    Performs the heuristic assignment algorithm for labeling a tissue scaffold.
+
+    Parameters
+    ----------
+    graph   :   networkX.Graph
+        the graph of the tissue
+    cell_type_probabilities :   ndarray
+        `1 x K` vector of cell type abundance proportions
+    neighborhood_probabilities  :   ndarray
+        `K x K` matrix of neighborhood co-occurence probabilities
+    mode    :   str
+        The neighborhood styyle, {'graph', 'region'}
+    dim :   float
+        the size of the canvas
+    position_dict   :   dict
+        dictionary of circle center positions from tissue generation
+    
+    Returns
+    -------
+    attribute_dict  :   dict
+        dictionary of cell type assignments for each node ID
+    
+    '''
     n_cell_types = neighborhood_probabilities.shape[0]
     node_id_list = list(graph.nodes)
     attribute_dict = dict(zip(node_id_list, [-1 for i in graph.nodes]))
@@ -321,15 +458,3 @@ def heuristic_assignment(graph, cell_type_probabilities, neighborhood_probabilit
             unassigned = get_unassigned_nodes(node_id_list, attribute_dict)
 
     return attribute_dict
-
-def build_assignment_matrix(attribute_dict, n_cell_types):
-    data = list(attribute_dict.items())
-    data = np.array(data) # Assignment matrix
-    
-    B = np.zeros((data.shape[0],n_cell_types)) # Empty matrix
-    
-    for i in range(0, data.shape[0]):
-        t = data[i,1]
-        B[i,t] = 1
-    
-    return B 

@@ -1,4 +1,4 @@
-import neighborhoods.permutationtest as perm_test
+import spatialpower.neighborhoods.permutationtest as perm_test
 import numpy as np
 import networkx as nx
 import multiprocessing as mp
