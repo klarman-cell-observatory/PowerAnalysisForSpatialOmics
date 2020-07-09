@@ -9,13 +9,13 @@ This is a package for _in silico_ tissue generation and visualization. PackageNa
 PackageName is written for Python 3.7.3. 
 
 It requires the following dependencies: 
-    - `numpy == 1.17.3`
-    - `matplotlib == 3.1.2`
-    - `pandas == 0.25.3`
-    - `networkx == 2.4`
-    - `joblib == 0.15.1`
-    - `scipy == 1.4.1`
-    - `jax == 0.1.62`
+    * `numpy == 1.17.3`
+    *`matplotlib == 3.1.2`
+    * `pandas == 0.25.3`
+    * `networkx == 2.4`
+    * `joblib == 0.15.1`
+    * `scipy == 1.4.1`
+    * `jax == 0.1.62`
 
 Example noteboooks make invoke additional dependencies, but are not required for the base functionality of PackageName. 
 
