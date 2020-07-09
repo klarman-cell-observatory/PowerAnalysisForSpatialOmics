@@ -1,3 +1,0 @@
-\babel@toc {english}{}
-\contentsline {chapter}{\numberline {1}Intro}{1}{chapter.1}
-\contentsline {chapter}{\numberline {2}Indices and tables}{3}{chapter.2}
