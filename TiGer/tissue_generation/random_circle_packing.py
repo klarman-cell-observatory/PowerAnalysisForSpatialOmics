@@ -265,9 +265,10 @@ def voronoi_finite_polygons_2d(vor, radius=None):
     return new_regions, np.asarray(new_vertices)
 
 
-def circle_packing(width, height, r_max, r_min, outdir, circle_viz=True, build_graph=True, draw_vor=False ):
+def circle_packing(width, height, r_max, r_min, outdir, n_colors = 8, circle_viz=True, build_graph=True, draw_vor=False ):
     """
     Performs the circle packing
+    ADAPTED FROM: https://www.mathworks.com/matlabcentral/answers/405186-fill-area-with-random-circles-having-different-diameters
 
     Parameters
     ----------
@@ -422,7 +423,7 @@ def circle_packing(width, height, r_max, r_min, outdir, circle_viz=True, build_g
             circle_list.append(Pm)
 
     time_stamp = str(time.strftime("%Y-%m-%d-%H%M%S"))
-    assigned_colors = set_color(R, r_max, r_min, int(np.round(r_max-r_min) + 1))
+    assigned_colors = set_color(R, r_max, r_min, n_colors)
 
     if circle_viz:
         plt.clf()

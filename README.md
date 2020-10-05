@@ -1,9 +1,7 @@
-# spatialpower
-final code package for spatial power analysis and tissue generation paper. name subject to change. 
-
+# TiGer
 
 ## Overview
-This is a package for _in silico_ tissue generation and visualization. PackageName is useful for generating datasets for _in silico_ ground truthing, generation of spatial null models, testing of new algorithms for spatially-resolved single cell biology, and power analysis.
+TiGer is a package for _in silico_ tissue generation and visualization. TiGer is useful for generating datasets for _in silico_ ground truthing, generation of spatial null models, testing of new algorithms for spatially-resolved single cell biology, and power analysis.
 
 ## Dependencies
 PackageName is written for Python 3.7.3. 
@@ -18,13 +16,11 @@ It requires the following dependencies:
 - `scipy == 1.4.1`
 - `jax == 0.1.62`
 
-Example noteboooks make invoke additional dependencies, but are not required for the base functionality of PackageName. 
+Example notebooks make invoke additional dependencies, but are not required for the base functionality of TiGer. 
 
 ## Installation
 1. Install appropriate dependencies. 
-2. `pip install packageName` or `conda install -c [dev] packageName` 
-
-We also make a Docker image available here. 
+2. `pip install TiGer` or `conda install -c [dev] TiGer` *(**TO DO**)
 
 ## Usage
 
@@ -33,7 +29,7 @@ We provide several notebooks as examples on potential uses of PackageName:
 2. Tissue labeling from existing scaffold
 3. Using _in silico_ tissue for spatial power analysis [Citation]
 
-PackageName can also be called from the command line for generation of tissues:
+TiGer can also be called from the command line for generation of tissues:
 `example command goes here`. 
 
 ## Citing this code
