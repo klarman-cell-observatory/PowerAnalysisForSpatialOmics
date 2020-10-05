@@ -265,38 +265,43 @@ def voronoi_finite_polygons_2d(vor, radius=None):
     return new_regions, np.asarray(new_vertices)
 
 
-if __name__ == '__main__':
+def circle_packing(width, height, r_max, r_min, outdir, circle_viz=True, build_graph=True, draw_vor=False ):
+    """
+    Performs the circle packing
 
+    Parameters
+    ----------
+    width   :   float
+        width of circle packing image
+    height  :   float
+        height of circle packing image
+    r_max   :   float
+        maximum circle radius
+    r_min   :   float
+        minimum circle radius
+    outdir  :   string
+        path to write files to
+    circle_viz  :   bool
+        if true, saves circle packing to image
+    build_graph :   bool
+        if true, generates the adjacency graph
+    draw_vor    :   bool
+        if true, saves a voronoi of the IST
 
-    parser = argparse.ArgumentParser(description="Configuration parameters for circle packing.")
-    parser.add_argument('-x', '--width', type=float, default=500, help="Width of constraining rectangle")
-    parser.add_argument('-y', '--height', type=float, default=500, help="Height of the contstraining rectangle")
-    parser.add_argument('--rmax', type=float, default=25, help="Maximum circle radius.")
-    parser.add_argument('--rmin', type=float, default=4, help="Minimum circle radius.")
-    parser.add_argument('--visualization', action="store_true",
-                        help="If present, generate and save a visualization of the circle packing.")
-    # parser.add_argument('--constrained', action="store_true",
-    #  help="If present, do not allow circle edges past boundary.")
-    parser.add_argument('-o', '--outdir', type=str, default='./', help="The folder in which to store results.")
-    parser.add_argument('-n', '--n_colors', type=int, default=10, help='The number of bins to color cell size.')
-    parser.add_argument('-g', '--graph', default=True,
-                        help='If present, draw the graph representation of the circle packing.', action="store_true")
-    parser.add_argument('-v', '--voronoi', default=True, action="store_true", help='If present, draw the voronoi.')
-    args = parser.parse_args()
+    Returns
+    -------
+    C   :   array-like
+        the [x y] coordinates of the centroids
+    R   :   array-like
+        the radii of each element in C
+    adjacency_matrix    :   array
+        Adjacency matrix of the circle packing graph
 
-    ab = np.array([args.width, args.height])
-
-    r_min = args.rmin
-    r_max = args.rmax
-    visualization = args.visualization
-    constrained = False
-
-    if constrained:
-        pass
-    else:
-        constrained = False
-
-    outdir = args.outdir
+    """
+    if draw_vor:
+        build_graph == True 
+    
+    ab = np.array([width, height])
 
     dx = max(min(ab) / 2e3, r_min / 50)  # Sets up the increment.
     x = np.arange(0, ab[0] + dx, dx)
@@ -314,42 +319,32 @@ if __name__ == '__main__':
     corners = np.array([[0, 0], [1, 0], [1, 1], [0, 1]])
     corner_vertices = np.multiply(ab, corners)
 
-    if not constrained:
-        x_a = corner_vertices
-        x_b = np.roll(corner_vertices, [-1, -1])  # This command empirically seems equivalent to circshift(X, [-1 0])
+    #if not constrained:
+    x_a = corner_vertices
+    x_b = np.roll(corner_vertices, [-1, -1])  # This command empirically seems equivalent to circshift(X, [-1 0])
 
-        rc = np.multiply(dr, np.random.rand(4, 1)) + r_min
-        rc_a = rc
-        rc_b = np.roll(rc, [-1])
+    rc = np.multiply(dr, np.random.rand(4, 1)) + r_min
+    rc_a = rc
+    rc_b = np.roll(rc, [-1])
 
-        C = []
-        R = []
+    C = []
+    R = []
 
-        for i in range(0, 4):
-            Ci, Ri = sample_line_segment(x_a[i, :], x_b[i, :], rc_a[i], rc_b[i], r_min, r_max)
-            Ci = Ci[:-1, :]
-            # C[i] = Ci
-            C.append(Ci)
-            Ri = Ri[:-1, :]
-            # R[i] = Ri
-            R.append(Ri)
+    for i in range(0, 4):
+        Ci, Ri = sample_line_segment(x_a[i, :], x_b[i, :], rc_a[i], rc_b[i], r_min, r_max)
+        Ci = Ci[:-1, :]
+        # C[i] = Ci
+        C.append(Ci)
+        Ri = Ri[:-1, :]
+        # R[i] = Ri
+        R.append(Ri)
 
-        R = np.vstack((R[0], R[1], R[2], R[3]))
-        C = np.vstack((C[0], C[1], C[2], C[3]))
+    R = np.vstack((R[0], R[1], R[2], R[3]))
+    C = np.vstack((C[0], C[1], C[2], C[3]))
 
-        for i in range(0, C.shape[0]):
-            G, _ = update_grid(C[i, :], R[i], G, r_min)
+    for i in range(0, C.shape[0]):
+        G, _ = update_grid(C[i, :], R[i], G, r_min)
 
-    else:
-        G_max = G + r_min + 1e-12
-        G_min = G - r_min - 1e-12
-        chk_in = (G_max <= ab) & (G_min >= [0, 0])
-        chk_in = chk_in.astype(int)
-        chk_in = np.sum(chk_in, axis=1) == 2
-        # keep [T, T]
-        G = G[chk_in]
-        C = []
-        R = []
 
     circle_list = []
 
@@ -396,17 +391,6 @@ if __name__ == '__main__':
         else:
             R_new = (Rg[i] - r_min) * np.random.rand() + r_min
 
-        if constrained:
-            # print("CONSTRAINED CONDITION")
-            X_new_max = X_new + R_new + 1e-12
-            X_new_min = X_new - R_new - 1e-12
-            mask_max = X_new_max <= ab
-            mask_min = X_new_min >= np.array([0, 0])
-            mask = mask_max & mask_min
-            mask = mask.astype(int)
-            if np.sum(mask, axis=1) < 2:
-                cnt += 1
-                continue
         if np.count_nonzero(C) != 0:  # not empty
             # print("NON EMPTY C")
             _d_in = C - X_new
@@ -433,14 +417,14 @@ if __name__ == '__main__':
         if not flag:
             Rg = Rg[mask]  # make sure this doesn't need to be flipped.
 
-        if visualization:
+        if circle_viz:
             Pm = R_new * P + X_new
             circle_list.append(Pm)
 
     time_stamp = str(time.strftime("%Y-%m-%d-%H%M%S"))
-    assigned_colors = set_color(R, r_max, r_min, args.n_colors)
+    assigned_colors = set_color(R, r_max, r_min, int(np.round(r_max-r_min) + 1))
 
-    if visualization:
+    if circle_viz:
         plt.clf()
         #fig = Figure()
         #canvas = FigureCanvas(fig)
@@ -461,7 +445,8 @@ if __name__ == '__main__':
         arr = np.fromstring(fig.canvas.tostring_rgb(), dtype=np.uint8, sep='')
         arr = arr.reshape(fig.canvas.get_width_height()[::-1] + (3,))
         np.save(str(outdir) + 'circle_packing_' + time_stamp + '.npy', arr)
-    if args.graph:
+    
+    if build_graph:
         import networkx as nx
 
         # For each circle, check all other circles to see if there is overlap.
@@ -512,7 +497,7 @@ if __name__ == '__main__':
         nx.draw(graph, pos=position_dict, node_size=17, node_color=assigned_colors, with_labels=False)
         plt.savefig(str(outdir) + 'graph_' + time_stamp + '.png', dpi=350)
 
-    if args.voronoi:
+    if draw_vor:
         from scipy.spatial import Voronoi, voronoi_plot_2d
 
         fig, ax = plt.subplots(1, 1, figsize=(8, 8))
@@ -529,3 +514,43 @@ if __name__ == '__main__':
         ax.axis('off')
         ax.set(xlim=(0 - 0.05 * ab[0], ab[0] + 0.05 * ab[0]), ylim=(0 - 0.05 * ab[1], ab[1] + 0.05 * ab[1]))
         plt.savefig(str(outdir) + 'voronoi_' + time_stamp + '.png', dpi=350)
+    
+    np.save(str(outdir) + '/C_circlepacking_'+time_stamp + '.npy', C)
+    np.save(str(outdir) + '/R_circlepacking_'+time_stamp + '.npy', R)
+    np.save(str(outdir) + '/A_circlepacking_'+time_stamp + '.npy', adjacency_matrix)
+
+    return C, R, adjacency_matrix
+
+if __name__ == '__main__':
+
+
+    parser = argparse.ArgumentParser(description="Configuration parameters for circle packing.")
+    parser.add_argument('-x', '--width', type=float, default=500, help="Width of constraining rectangle")
+    parser.add_argument('-y', '--height', type=float, default=500, help="Height of the contstraining rectangle")
+    parser.add_argument('--rmax', type=float, default=25, help="Maximum circle radius.")
+    parser.add_argument('--rmin', type=float, default=4, help="Minimum circle radius.")
+    parser.add_argument('--visualization', action="store_true",
+                        help="If present, generate and save a visualization of the circle packing.")
+    # parser.add_argument('--constrained', action="store_true",
+    #  help="If present, do not allow circle edges past boundary.")
+    parser.add_argument('-o', '--outdir', type=str, default='./', help="The folder in which to store results.")
+    parser.add_argument('-n', '--n_colors', type=int, default=10, help='The number of bins to color cell size.')
+    parser.add_argument('-g', '--graph', default=True,
+                        help='If present, draw the graph representation of the circle packing.', action="store_true")
+    parser.add_argument('-v', '--voronoi', default=True, action="store_true", help='If present, draw the voronoi.')
+    args = parser.parse_args()
+
+    
+    width = args.width 
+    height = args.height
+    r_min = args.rmin
+    r_max = args.rmax
+    circle_viz = args.visualization
+    outdir = args.outdir
+    n_colors = args.n_colors
+    build_graph = args.graph
+    draw_vor = args.voronoi
+    
+
+    C, R, adjacency_matrix = circle_packing(width, height, r_max, r_min, outdir, circle_viz=True, build_graph=True, draw_vor=False)
+    
