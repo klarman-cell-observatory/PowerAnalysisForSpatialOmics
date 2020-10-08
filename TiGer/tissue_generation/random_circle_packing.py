@@ -265,7 +265,7 @@ def voronoi_finite_polygons_2d(vor, radius=None):
     return new_regions, np.asarray(new_vertices)
 
 
-def circle_packing(width, height, r_max, r_min, outdir, n_colors = 8, circle_viz=True, build_graph=True, draw_vor=False ):
+def circle_packing(width, height, r_max, r_min, outdir, n_colors = 8, circle_viz=True, build_graph=True, draw_vor=False, no_save=False ):
     """
     Performs the circle packing
     ADAPTED FROM: https://www.mathworks.com/matlabcentral/answers/405186-fill-area-with-random-circles-having-different-diameters
@@ -288,6 +288,8 @@ def circle_packing(width, height, r_max, r_min, outdir, n_colors = 8, circle_viz
         if true, generates the adjacency graph
     draw_vor    :   bool
         if true, saves a voronoi of the IST
+    no_save     :   bool
+        if true, bypasses saving tissue scaffold files to disk. 
 
     Returns
     -------
@@ -441,11 +443,13 @@ def circle_packing(width, height, r_max, r_min, outdir, n_colors = 8, circle_viz
             color = assigned_colors[i]
             plt.fill(circle[:, 0], circle[:, 1], facecolor=color, antialiased=False)
 
-        plt.savefig(str(outdir) + 'circle_packing_' + time_stamp + '.png', dpi=350)
+        if no_save == False:
+         plt.savefig(str(outdir) + 'circle_packing_' + time_stamp + '.png', dpi=350)
 
         arr = np.fromstring(fig.canvas.tostring_rgb(), dtype=np.uint8, sep='')
         arr = arr.reshape(fig.canvas.get_width_height()[::-1] + (3,))
-        np.save(str(outdir) + 'circle_packing_' + time_stamp + '.npy', arr)
+        if no_save == False:
+            np.save(str(outdir) + 'circle_packing_' + time_stamp + '.npy', arr)
     
     if build_graph:
         import networkx as nx
@@ -496,7 +500,8 @@ def circle_packing(width, height, r_max, r_min, outdir, n_colors = 8, circle_viz
         fig, ax = plt.subplots(figsize=(8, 8))
 
         nx.draw(graph, pos=position_dict, node_size=17, node_color=assigned_colors, with_labels=False)
-        plt.savefig(str(outdir) + 'graph_' + time_stamp + '.png', dpi=350)
+        if no_save ==False:
+            plt.savefig(str(outdir) + 'graph_' + time_stamp + '.png', dpi=350)
 
     if draw_vor:
         from scipy.spatial import Voronoi, voronoi_plot_2d
@@ -514,11 +519,13 @@ def circle_packing(width, height, r_max, r_min, outdir, n_colors = 8, circle_viz
         ax.axis('equal')
         ax.axis('off')
         ax.set(xlim=(0 - 0.05 * ab[0], ab[0] + 0.05 * ab[0]), ylim=(0 - 0.05 * ab[1], ab[1] + 0.05 * ab[1]))
-        plt.savefig(str(outdir) + 'voronoi_' + time_stamp + '.png', dpi=350)
+        if no_save == False:
+            plt.savefig(str(outdir) + 'voronoi_' + time_stamp + '.png', dpi=350)
     
-    np.save(str(outdir) + '/C_circlepacking_'+time_stamp + '.npy', C)
-    np.save(str(outdir) + '/R_circlepacking_'+time_stamp + '.npy', R)
-    np.save(str(outdir) + '/A_circlepacking_'+time_stamp + '.npy', adjacency_matrix)
+    if no_save == False:
+        np.save(str(outdir) + '/C_circlepacking_'+time_stamp + '.npy', C)
+        np.save(str(outdir) + '/R_circlepacking_'+time_stamp + '.npy', R)
+        np.save(str(outdir) + '/A_circlepacking_'+time_stamp + '.npy', adjacency_matrix)
 
     return C, R, adjacency_matrix
 

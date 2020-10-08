@@ -35,7 +35,7 @@ TiGer can also be called from the command line for generation of tissues:
 ## Citing this code
 If you use PackageName in your work, please cite: 
 
-## Licence 
+## License 
 
 Copyright (C) 2020  Ethan Alexander García Baker
 
