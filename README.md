@@ -1,53 +1,28 @@
-# TiGer
+# Power analysis for spatial omics
 
-## Overview
-TiGer is a package for _in silico_ tissue generation and visualization. TiGer is useful for generating datasets for _in silico_ ground truthing, generation of spatial null models, testing of new algorithms for spatially-resolved single cell biology, and power analysis.
+This repo contains code related to _Power analysis for spatial omics_. 
 
-## Dependencies
-PackageName is written for Python 3.7.3. 
+A description of the contents:
 
-It requires the following dependencies: 
-
-- `numpy == 1.17.3`
-- `matplotlib == 3.1.2`
-- `pandas == 0.25.3`
-- `networkx == 2.4`
-- `joblib == 0.15.1`
-- `scipy == 1.4.1`
-- `jax == 0.1.62`
-
-Example notebooks make invoke additional dependencies, but are not required for the base functionality of TiGer. 
-
-## Installation
-1. Install appropriate dependencies. 
-2. `pip install TiGer` or `conda install -c [dev] TiGer` *(**TO DO**)
-
-## Usage
-
-We provide several notebooks as examples on potential uses of PackageName:
-1. Tissue generation
-2. Tissue labeling from existing scaffold
-3. Using _in silico_ tissue for spatial power analysis [Citation]
-
-TiGer can also be called from the command line for generation of tissues:
-`example command goes here`. 
-
-## Citing this code
-If you use PackageName in your work, please cite: 
-
-## License 
-
-Copyright (C) 2020  Ethan Alexander García Baker
-
-This program is free software: you can redistribute it and/or modify
-it under the terms of the GNU General Public License as published by
-the Free Software Foundation, version 3.
-
-This program is distributed in the hope that it will be useful,
-but WITHOUT ANY WARRANTY; without even the implied warranty of
-MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-GNU General Public License for more details.
-
-You should have received a copy of the GNU General Public License
-along with this program.  If not, see <https://www.gnu.org/licenses/>.
-
++ `codex_spleen/` : 
+    - `Spleen_IST_generation.ipynb` : IST generation for mouse spleen, **Figure 2k**
+    - `Spleen_NegBinom.ipynb` : Sampling experiments for spleen, **Figure 2l**
+    - `ProspectivePower_2mn.ipynb`: Prospective power analysis, **Figure 2m-n**
+    - `FigS7_2021-12-03.ipynb` : FOV size experiments and visualization, **Supplementary Figure 7**
+    - `Spleen_Cohort_Comparison.ipynb` : Interaction enrichment statistic, **Supplementary Figure 8**
+    - `spleen_data/` : Contains support files. 
++ `simulation/` :
+    - `FigureS3.ipynb` : Sampling experiments for synthetic data. **Supplementary Figure 3**
+    - `FigureS4Heatmaps-2021-12-02.ipynb`: Clustering experiments for ISTs, **Supplementary Figure 4**
++ `osmfish_cortex/` 
+    - `osmfish_generation.ipynb` : IST generation for mouse cortex, **Figure 2g**
+    - `NB_Cell_Discov_clean.ipynb`: Cell type discovery sampling experiments, **Figure 2h, Supplementary Figure 6d**
+    - `data/` : Contains support files
++ `hdst_breastcancer/`
+    - `BreastCancer_IST_Generation.ipynb`: IST generation for breast cancer, **Figure 2c**
+    - `BreastCancer_NB.ipynb` : Cell type discovery sampling experiments, **Figure 2d**
+    - `data/` : Contains support files
++ `spatialpower/` : Package for IST generation and supporting analysis
++ `scripts/` : Contains support scripts for other analyses
+    - `generate_tiles.py` : Generates tiles for shuffling analysis corresponding to Figure 2m-n
+    - `random_self_pref_cluster.py` :   Generates ISTs for clustograms in Supplementary Figure 4.  
