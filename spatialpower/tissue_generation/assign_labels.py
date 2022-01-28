@@ -466,7 +466,6 @@ def optimize(adj_matrix, cell_type_probabilities, neighborhood_probabilities,
 
     for i in range(0, len(x)):
         choices, = onp.where(cell_assignment[x[i],:] == 1)
-        cell_assignment = jax.ops.index_update(cell_assignment, [x[i], onp.random.choice(choices, 
-            size = len(choices) -1, replace=False)], 0)
+        cell_assignment = jax.ops.index_update(cell_assignment, x[i], tuple(onp.random.choice(choices, size = len(choices) -1, replace=False)), 0)
         
     return cell_assignment

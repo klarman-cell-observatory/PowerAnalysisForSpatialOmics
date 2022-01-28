@@ -26,3 +26,13 @@ A description of the contents:
 + `scripts/` : Contains support scripts for other analyses
     - `generate_tiles.py` : Generates tiles for shuffling analysis corresponding to Figure 2m-n
     - `random_self_pref_cluster.py` :   Generates ISTs for clustograms in Supplementary Figure 4.  
+
+## Requirements
+We provide a clone of the conda environment used to generate these results in the `env.yml` file. To install the environment, use `conda env create -n <environment name> --file env.yml`.
+
+## Using the `spatialpower` package
+To install our software, add the `spatialpower/` directory to your Python path, or run a Jupyter notebook from a directory containing `spatialpower/`. 
+
+## Example usage
+We provide example usage of our approach for tissue generation. See the `osmfish_cortex/osmfish_generation.ipynb` file for a complete example with generated tissue from raw osmFISH data. 
+
