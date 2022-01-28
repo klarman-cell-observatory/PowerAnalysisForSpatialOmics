@@ -38,3 +38,4 @@ To install our software, add the `spatialpower/` directory to your Python path, 
 ## Example usage
 We provide example usage of our approach for tissue generation. See the `osmfish_cortex/osmfish_generation.ipynb` file for a complete example with generated tissue from raw osmFISH data. 
 
+Additionally, we provide `simulated_tissue.ipynb` as an example of how to use our tissue generation method on a theoretical tissue (e.g. for testing methods to recover a specific spatial feature). 
