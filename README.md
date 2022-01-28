@@ -26,6 +26,8 @@ A description of the contents:
 + `scripts/` : Contains support scripts for other analyses
     - `generate_tiles.py` : Generates tiles for shuffling analysis corresponding to Figure 2m-n
     - `random_self_pref_cluster.py` :   Generates ISTs for clustograms in Supplementary Figure 4.  
++ `simulated_tissue.ipynb` : An example of fully synthetic tissue generation/optimization. 
++ `sample_results\` : Contains the results and support files for the tissue generation example in `simualted_tissue.ipynb`
 
 ## Requirements
 We provide a clone of the conda environment used to generate these results in the `env.yml` file. To install the environment, use `conda env create -n <environment name> --file env.yml`.
