@@ -1,6 +1,6 @@
 # Power analysis for spatial omics
 
-This repo contains code related to [_Power analysis for spatial omics_]()
+This repo contains code related to [_Power analysis for spatial omics_](https://doi.org/10.1101/2022.01.26.477748)
 
 If you use this in your work, please cite: 
 **Power analysis for spatial omics.** Ethan Alexander García Baker, Denis Schapiro, Bianca Dumitrascu, Sanja Vickovic, Aviv Regev
@@ -40,6 +40,6 @@ We provide a clone of the conda environment used to generate these results in th
 To install our software, add the `spatialpower/` directory to your Python path, or run a Jupyter notebook from a directory containing `spatialpower/`. 
 
 ## Example usage
-We provide example usage of our approach for tissue generation. See the `osmfish_cortex/osmfish_generation.ipynb` file for a complete example with generated tissue from raw osmFISH data. 
+We provide example usage of our approach for tissue generation. See the `osmfish_cortex/osmfish_generation.ipynb` file for a complete example with generated tissue from raw osmFISH data. The run time should be below 30 minutes for the full notebook on a laptop.
 
 Additionally, we provide `simulated_tissue.ipynb` as an example of how to use our tissue generation method on a theoretical tissue (e.g. for testing methods to recover a specific spatial feature). 
