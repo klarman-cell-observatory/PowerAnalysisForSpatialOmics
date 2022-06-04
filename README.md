@@ -1,6 +1,6 @@
 # Power analysis for spatial omics
 
-This repo contains code related to [_Power analysis for spatial omics_]()
+This repo contains code related to [_Power analysis for spatial omics_](https://www.biorxiv.org/content/10.1101/2022.01.26.477748v1)
 
 If you use this in your work, please cite: 
 **Power analysis for spatial omics.** Ethan Alexander García Baker, Denis Schapiro, Bianca Dumitrascu, Sanja Vickovic, Aviv Regev
