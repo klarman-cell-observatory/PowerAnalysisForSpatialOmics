@@ -14,6 +14,8 @@ If you use this in your work, please cite:
     - `ProspectivePower_2mn.ipynb`: Prospective power analysis, **Figure 2m-n**
     - `FigS7_2021-12-03.ipynb` : FOV size experiments and visualization, **Supplementary Figure 7**
     - `Spleen_Cohort_Comparison.ipynb` : Interaction enrichment statistic, **Supplementary Figure 8**
+    - `spleen_binning.ipynb` : Resolution analysis for spleen dataset, **Figure 3**
+    - `spleen_multisample.ipynb` : Analysis on the impact of inclusion of multiple samples on power, **Figure 3**
     - `spleen_data/` : Contains support files. 
 + `simulation/` :
     - `FigureS3.ipynb` : Sampling experiments for synthetic data. **Supplementary Figure 3**
@@ -25,6 +27,8 @@ If you use this in your work, please cite:
 + `hdst_breastcancer/`
     - `BreastCancer_IST_Generation.ipynb`: IST generation for breast cancer, **Figure 2c**
     - `BreastCancer_NB.ipynb` : Cell type discovery sampling experiments, **Figure 2d**
+    - `HDST_binning.ipynb` : Resolution analysis for HDST breast cancer data, **Figure 3**
+    - `BreastCancer_multisample.ipynb` : Analysis on the impact of inclusion of multiple samples on power, **Figure 3**
     - `data/` : Contains support files
 + `spatialpower/` : Package for IST generation and supporting analysis
 + `scripts/` : Contains support scripts for other analyses
